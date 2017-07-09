@@ -62,3 +62,23 @@
  .ll-youtube-align-right {
       margin: 0 0 0 auto;
  }
+
+ .ll-youtube-size-hd {
+     width: 853px;
+ }
+
+ .ll-youtube-size-xl {
+    width: 650px;
+}
+
+.ll-youtube-size-large {
+    width: 501px;
+}
+
+.ll-youtube-size-medium {
+    width: 401px;
+}
+
+.ll-youtube-size-small {
+    width: 302px;
+}

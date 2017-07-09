@@ -22,11 +22,33 @@
             "properties": [
               {
                 "name": "youtubeURL",
-                "label": "",
+                "label": "Youtube Video URL",
                 "type": "string",
-                "default": "Youtube Video URL",
+                "default": "",
                 "min": 1
-              }
+              },
+              {
+                "name": "position",
+                "label": "Position",
+                "type": "align",
+                "default": "center",
+                "min": 1
+              },
+              {
+                "name": "size",
+                "label": "Position",
+                "type": "select",
+                "values": [
+                  "Small",
+                  "Medium",
+                  "Large",
+                  "Extra Large",
+                  "HD",
+                  "Auto"
+                ],
+                "default": "center",
+                "min": 1
+              },
             ]
           }
         ]
