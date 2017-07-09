@@ -1,35 +1,31 @@
 {
   "manifest": "1",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "locale": {
   	"default": "en-us",
   	"supported": ["en-us"]
   },
+
   "elements": [
-	{
-	  "path": "files",
-	  "name": "Lazyload Youtube",
-	  "version": "1.0.0",
-	  "settings": {
-		"config": {
-		  "external": {
-			  "url": "https://bitbucket.com/trchristensen",
-			  "label": "Check out my Bitbucket."
-		  },
-		  "autopop": false
-		},
-		"properties": [
+	  {
+  	  "path": "files",
+  	  "name": "Lazyload Youtube",
+  	  "version": "1.0.1",
+  	  "settings": {
+  		"config": {},
+  		  "autopop": true,
+        "properties": [
           {
-            "type": "group",
             "name": "settings",
             "label": "Settings",
+            "type": "group",
             "properties": [
               {
                 "name": "youtubeURL",
-                "default": "https://www.youtube.com/watch?v=a8YgTaMyZRk",
-                "hidden": true,
+                "label": "",
                 "type": "string",
-                "label": "Youtube URL"
+                "default": "Youtube Video URL",
+                "min": 1
               }
             ]
           }

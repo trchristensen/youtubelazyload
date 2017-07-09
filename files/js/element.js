@@ -5,8 +5,37 @@
 (function() {
     var LazyLoad = PlatformElement.extend({
         initialize: function() {
+            this.parseURL();
             this.lazyLoader();
         },
+
+        parseURL: function() {
+          // Retrieve youTube URL setting
+          var youtubeURL = this.settings.get('youtubeURL');
+          // If the setting has a value and it is not the default value
+          if (youtubeURL && youtubeURL != "Youtube Video URL") {
+
+            // YouTube URL parser function
+            function youtube_parser(url){
+                var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+                var match = url.match(regExp);
+                return (match&&match[7].length==11)? match[7] : false;
+            }
+
+            //set the youtube id as a variable
+            var ytid = youtube_parser(youtubeURL);
+
+            // Set the setting to the new value
+            this.settings.set("youtubeURL", ytid);
+            // Save the setting
+            this.settings.save();
+          } else {
+            // Save the setting as an empty string.
+          }
+
+
+        },
+
 				lazyLoader: function() {
 
 			    var youtube = document.querySelectorAll( ".youtube" );
