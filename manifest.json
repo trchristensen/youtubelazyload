@@ -9,7 +9,7 @@
   "elements": [
 	  {
   	  "path": "files",
-  	  "name": "Lazyload Youtube",
+  	  "name": "YouTube LazyLoader",
   	  "version": "1.0.1",
   	  "settings": {
   		"config": {},
@@ -22,33 +22,56 @@
             "properties": [
               {
                 "name": "youtubeURL",
-                "label": "Youtube Video URL",
+                "label": "YouTube Video URL",
                 "type": "string",
                 "default": "",
                 "min": 1
               },
               {
-                "name": "position",
-                "label": "Position",
-                "type": "align",
-                "default": "center",
-                "min": 1
-              },
-              {
                 "name": "size",
-                "label": "Position",
+                "label": "Size",
                 "type": "select",
                 "values": [
                   "Small",
                   "Medium",
                   "Large",
-                  "Extra Large",
+                  "Extra-Large",
                   "HD",
                   "Auto"
                 ],
-                "default": "center",
+                "default": "Auto",
                 "min": 1
               },
+              {
+                "name": "position",
+                "label": "Alignment",
+                "type": "align",
+                "default": "center",
+                "min": 1
+              }
+            ]
+          },
+          {
+            "name": "spacing",
+            "label": "Spacing",
+            "type": "group",
+            "properties": [
+              {
+                "name": "margin-top",
+                "label": "Margin Top",
+                "type": "int",
+                "default": 0,
+                "step": 10,
+                "min": 0
+              },
+              {
+                "name": "margin-bottom",
+                "label": "Margin Bottom",
+                "type": "int",
+                "default": 0,
+                "step": 10,
+                "min": 0
+              }
             ]
           }
         ]

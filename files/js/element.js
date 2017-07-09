@@ -35,36 +35,6 @@
 
 
         },
-        videoSize: function() {
-          // Retrieve SIZE setting
-          var size = this.settings.get('size');
-          // depending on the selected size, will return a class name for the video container.
-          switch(size) {
-              case "Small":
-                  size = "ll-youtube-size-small";
-                  return size;
-                  break;
-              case "Medium":
-                  size = "ll-youtube-size-medium";
-                  return size;
-                  break;
-              case "Large":
-                  size = "ll-youtube-size-large";
-                  return size;
-                  break;
-              case "Extra Large":
-                  size = "ll-youtube-size-xl";
-                  return size;
-                  break;
-              case "HD":
-                  size = "ll-youtube-size-hd";
-                  return size;
-                  break;
-              default:
-              // Auto - dont add a class
-                  null
-          }
-        },
 
 
 				lazyLoader: function() {
@@ -72,9 +42,6 @@
 			    var youtube = document.querySelectorAll( ".ll-youtube" );
 
 			    for (var i = 0; i < youtube.length; i++) {
-
-            // Add Size Class, depending on user selected option
-            this.VideoSize().parent().addClass("width", videoSize());
 
 			        var source = "https://img.youtube.com/vi/"+ youtube[i].dataset.embed +"/sddefault.jpg";
 

@@ -63,22 +63,30 @@
       margin: 0 0 0 auto;
  }
 
- .ll-youtube-size-hd {
+ .ll-youtube-align-left {
+      margin: 0 auto 0 0;
+ }
+
+ .ll-youtube-align-center {
+   margin: 0 auto;
+ }
+
+ .ll-youtube-size-HD {
      width: 853px;
  }
 
- .ll-youtube-size-xl {
+ .ll-youtube-size-Extra-Large {
     width: 650px;
 }
 
-.ll-youtube-size-large {
+.ll-youtube-size-Large {
     width: 501px;
 }
 
-.ll-youtube-size-medium {
+.ll-youtube-size-Medium {
     width: 401px;
 }
 
-.ll-youtube-size-small {
+.ll-youtube-size-Small {
     width: 302px;
 }
