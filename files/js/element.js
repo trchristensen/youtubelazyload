@@ -17,9 +17,8 @@
 
             // YouTube URL parser function
             function youtube_parser(url){
-                var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-                var match = url.match(regExp);
-                return (match&&match[7].length==11)? match[7] : false;
+              url = url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+              return (url[2] !== undefined) ? url[2].split(/[^0-9a-z_\-]/i)[0] : url[0];
             }
 
             //set the youtube id as a variable
