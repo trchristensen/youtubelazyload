@@ -12,21 +12,21 @@
 				ytlazyLoader: function() {
 
           // YOUTUBE VIDEO LAZY LOADER
-			    var youtube = document.querySelectorAll( ".ll-youtube" );
-			    for (var i = 0; i < youtube.length; i++) {
+			    var youtube = $( "#youtube-"+ this.element_id );
+
 
             // console.log('There are ' +youtube.length+ ' youtube videos on this page');
 
-  	        var source = "https://img.youtube.com/vi/"+ youtube[i].dataset.youtubeEmbed +"/sddefault.jpg";
+  	        var source = "https://img.youtube.com/vi/"+ youtube[0].dataset.youtubeEmbed +"/sddefault.jpg";
 
   	        var image = new Image();
               image.src = source;
               image.addEventListener( "load", function() {
-                  youtube[ i ].appendChild( image );
-              }( i ) );
+                  youtube[0].appendChild( image );
+              }() );
 
 
-              youtube[i].addEventListener( "click", function() {
+              youtube[0].addEventListener( "click", function() {
 
                   var iframe = document.createElement( "iframe" );
 
@@ -37,7 +37,7 @@
                   this.innerHTML = "";
                   this.appendChild( iframe );
               } );
-  			    }
+
 					},
 
             vmlazyLoader: function() {
