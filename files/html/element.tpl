@@ -1,6 +1,7 @@
-<div class="ll-youtube-container" style="margin-top:{{margin-top}}px;margin-bottom:{{margin-bottom}}px;">
-  <div class="ll-youtube-wrapper ll-youtube-size-{{size}} ll-youtube-align-{{position}}">
-      <div class="ll-youtube" data-embed="{{youtubeURL}}">
+<div class="ll-{{videoType}}-container" style="margin-top:{{margin-top}}px;margin-bottom:{{margin-bottom}}px;">
+  <div class="ll-{{videoType}}-wrapper ll-{{videoType}}-size-{{size}} ll-{{videoType}}-align-{{position}}">
+      <div class="ll-{{videoType}}" data-{{videoType}}-embed="{{videoURL}}">
+        <img src=""></>
           <div class="play-button"></div>
       </div>
   </div>

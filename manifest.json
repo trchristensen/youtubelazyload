@@ -9,7 +9,7 @@
   "elements": [
 	  {
   	  "path": "files",
-  	  "name": "YouTube LazyLoader",
+  	  "name": "Lazy Video",
   	  "version": "1.0.1",
   	  "settings": {
   		"config": {},
@@ -21,10 +21,18 @@
             "type": "group",
             "properties": [
               {
-                "name": "youtubeURL",
-                "label": "YouTube Video URL",
+                "name": "videoURL",
+                "label": "Video URL",
                 "type": "string",
                 "default": "",
+                "min": 1
+              },
+              {
+                "name": "videoType",
+                "label": "Video Type",
+                "type": "string",
+                "hidden": true,
+                "default": "youtube",
                 "min": 1
               },
               {
