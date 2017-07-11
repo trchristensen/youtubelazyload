@@ -3,108 +3,91 @@
  * @type {PlatformElement}
  */
 (function() {
-    var LazyLoad = PlatformElement.extend({
-        initialize: function() {
-            this.ytlazyLoader();
-            this.vmlazyLoader();
-        },
+  var LazyLoad = PlatformElement.extend({
+    initialize: function() {
+        this.ytlazyLoader();
+        this.vmlazyLoader();
+    },
 
-				ytlazyLoader: function() {
+	ytlazyLoader: function() {
+    // YOUTUBE VIDEO LAZY LOADER
+    var youtube = $( "#youtube-"+ this.element_id );
+    if(youtube.length > 0) {
+      var source = "https://img.youtube.com/vi/"+ youtube[0].dataset.youtubeEmbed +"/sddefault.jpg";
+      var image = new Image();
+      image.src = source;
 
-          // YOUTUBE VIDEO LAZY LOADER
-			    var youtube = $( "#youtube-"+ this.element_id );
+      image.addEventListener( "load", function() {
+          youtube[0].appendChild( image );
+      }() );
 
+      youtube[0].addEventListener( "click", function() {
+        var iframe = document.createElement( "iframe" );
+        iframe.setAttribute( "frameborder", "0" );
+        iframe.setAttribute( "allowfullscreen", "" );
+        iframe.setAttribute( "src", "https://www.youtube.com/embed/"+ this.dataset.youtubeEmbed +"?rel=0&showinfo=0&autoplay=1" );
+        this.innerHTML = "";
+        this.appendChild( iframe );
+        });
+      }
+		},
 
-            // console.log('There are ' +youtube.length+ ' youtube videos on this page');
+    vmlazyLoader: function() {
+      // VIMEO VIDEO LAZY LOADER
+	    var vimeo = $( "#vimeo-"+ this.element_id );
 
-  	        var source = "https://img.youtube.com/vi/"+ youtube[0].dataset.youtubeEmbed +"/sddefault.jpg";
+      for (var h = 0; h < vimeo.length; h++) {
+        (function(h) {
 
-  	        var image = new Image();
-              image.src = source;
-              image.addEventListener( "load", function() {
-                  youtube[0].appendChild( image );
-              }() );
+          var vimeoID = vimeo[0].dataset.vimeoEmbed;
+          // Tell Vimeo which function to call
+          var callback = 'embedVideo';
+          var vimeoAPI = 'https://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/' + vimeoID + '?jsoncallback=?' + callback + '&width=640';
 
+          $.getJSON( vimeoAPI, {
+            format: "json",
+          })
+          .done(function( data ) {
+            var vimThumb = data.thumbnail_url;
+            var vimIframe = data.html;
+            console.log(data.thumbnail_url);
+            console.log(data.html);
 
-              youtube[0].addEventListener( "click", function() {
+            var image = new Image();
+            image.src = vimThumb;
 
-                  var iframe = document.createElement( "iframe" );
+            image.addEventListener( "load", function() {
+                vimeo[0].appendChild( image );
+            }() );
 
-                  iframe.setAttribute( "frameborder", "0" );
-                  iframe.setAttribute( "allowfullscreen", "" );
-                  iframe.setAttribute( "src", "https://www.youtube.com/embed/"+ this.dataset.youtubeEmbed +"?rel=0&showinfo=0&autoplay=1" );
+            var autoPlay = '?autoplay=1';
 
-                  this.innerHTML = "";
-                  this.appendChild( iframe );
-              } );
+            function autoplayIframe(iframe, add) {
+              // search for 'src' in the iframe
+              var startFromSrc = iframe.slice(iframe.search('src'));
+              // isolate the url in the iframe
+              var sourceURL    = startFromSrc.slice(5, startFromSrc.search(' ') - 1);
+              // add the string argument to the end of the url
+              var str2 = sourceURL.concat(add);
+              // replace the string with the new url
+              var replace = iframe.replace(sourceURL, str2);
+              // return
+              return replace;
+            }
 
-					},
+            autoplayIframe(vimIframe, autoPlay);
 
-            vmlazyLoader: function() {
+            vimeo[0].addEventListener( "click", function() {
+              console.log('clicked' + this);
+              $(this).append( vimIframe );
 
-              // VIMEO VIDEO LAZY LOADER
+              });
 
-    			    var vimeo = document.querySelectorAll( ".ll-vimeo" );
-              for (var i = 0; i < vimeo.length; i++) {
-              (function(i) {
+          });
+        })(h);
+      }
+		},
+  });
 
-                var vID = vimeo[i].dataset.vimeoEmbed;
-                // Tell Vimeo what function to call
-                var callback = 'embedVideo';
-
-                  // Requires jQuery
-                  var vimeoAPI = 'https://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/' + vID + '?jsoncallback=?' + callback + '&width=640';
-
-                  $.getJSON( vimeoAPI, {
-                      format: "json",
-
-                    })
-                    .done(function( data ) {
-                      console.log(i);
-                      console.log(data.html);
-                      console.log(data.thumbnail_url);
-
-
-
-
-                // console.log('There are ' +vimeo.length + ' vimeo videos on this page');
-
-      	        // var source = "https://img.youtube.com/vi/"+ youtube[i].dataset.youtubeEmbed +"/sddefault.jpg";
-                //
-                //
-                //
-                //
-          	    //     // var image = new Image();
-                //     // var vimeoThumby = vimeo[i].vimeoThumb;
-                //     // var vimeoFramey = vimeo[i].vimeoFrame;
-                //
-                //     vimeoCall(vID);
-                //
-                //
-                //
-                //     console.log('Thumnail URL ' + vimeoThumb);
-                //     console.log('Iframe ' + vimeoFrame);
-                //
-                //     // console.log(image.src + ' = image.src');
-                //
-                //
-                //     $(document).ready(function() {
-                //       $("img[data-vimeo-embed=" + vID + "]").attr('src', vimeo[i].vimeoThumb);
-                //     });
-                //
-                //     vimeo[i].addEventListener( "click", function() {
-                //
-                //       var iframe = vimeoFrame + this.dataset.vimeoEmbed +"?&autoplay=1"
-                //
-                //       this.appendChild( iframe );
-                //     } );
-
-                });
-
-              })(i)
-              }
-    					},
-    });
-
-    return LazyLoad;
+  return LazyLoad;
 })();
